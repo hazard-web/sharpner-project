@@ -2,11 +2,47 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
     loadExpenses();
+    loadUserDetails();
     document.getElementById('expenseForm').addEventListener('submit', addExpense);
 
 //    // Add event listener for the edit form
 //     document.getElementById('editExpenseForm').addEventListener('submit', editExpense);
 
+}
+
+function loadUserDetails() {
+    // Make a GET request to crudcrud.com using Axios to retrieve user details
+    axios.get('https://crudcrud.com/api/68c1ecefef6744faa9de5117f4caff61/employeedata')
+        .then((response) => {
+        // Handle the successful response if needed
+        console.log('Expense added successfully:', response.data);
+
+        document.getElementById('description').value = '';
+        document.getElementById('amount').value = '';
+        })
+
+            // // You can choose to do something with the response data if necessary
+            // // For example, you might update the UI with the user details
+
+            // // Display user details on the website (replace 'userDetailsContainer' with your container id)
+            // const description = document.getElementById('description').value;
+            // const category = document.getElementById('category').value;
+            // const amount = parseFloat(document.getElementById('amount').value);
+            
+            // // Assuming your user details are an array, you may need to loop through them
+            // response.data.forEach(description => {
+            //     const Description = document.createElement('div');
+            //     Description.textContent = `Description: ${description.text}`;
+            //     description.appendChild(Description);
+        .catch((error) => {
+            // Handle the error if the GET request fails
+            console.error('Error loading user details:', error);
+
+            // You might want to display an error message to the user
+            alert('Failed to load user details. Please try again.');
+
+        });
+        
 }
 
 function addExpense(event) {
