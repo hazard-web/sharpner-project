@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-group">
-                <label for="amount">Choose ExpenseAmount:</label>
+                <label for="amount">Choose Expense Amount:</label>
                 <input type="number" id="amount" class="form-control" required>
             </div>
 
@@ -30,26 +30,31 @@
                     <option value="food">Food</option>
                     <option value="transportation">Transportation</option>
                     <option value="Fuel">Fuel</option>
-
                 </select>
-                <!-- <input type="text" id="category" class="form-control" required> -->
             </div>
-
-            
-
 
             <button type="submit" class="btn btn-primary">Add Expense</button>
         </form>
 
-        <div id="expenseList" class="mt-4">
-            <!-- Expense items will be displayed here -->
+        <div id="expenseList" class="mt-4"> 
         </div>
     </div>
 
+    <form id="editExpenseForm">
+        <!-- Edit expense form inputs go here -->
+        <button type="submit" style="margin-left: 50px;">Save Changes</button>
+    </form>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"></script>
-    <script src="app.js"></script>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    
+    <!-- Your JavaScript -->
+    <script src="app.js"></script>
 
 </body>
 </html>
