@@ -4,8 +4,9 @@ function init() {
     loadExpenses();
     document.getElementById('expenseForm').addEventListener('submit', addExpense);
 
-    // Add event listener for the edit form
-    document.getElementById('editExpenseForm').addEventListener('submit', editExpense);
+//    // Add event listener for the edit form
+//     document.getElementById('editExpenseForm').addEventListener('submit', editExpense);
+
 }
 
 function addExpense(event) {
@@ -14,7 +15,6 @@ function addExpense(event) {
     const description = document.getElementById('description').value;
     const category = document.getElementById('category').value;
     const amount = parseFloat(document.getElementById('amount').value);
-    
 
     if (isNaN(amount) || amount <= 0 || !description.trim()) {
         alert('Please enter a valid description and amount.');
@@ -22,22 +22,26 @@ function addExpense(event) {
     }
 
     const expense = {
-        id: new Date().getTime(),
         description,
         amount,
         category,
     };
 
-    const expenses = getExpenses();
-    expenses.push(expense);
-    saveExpenses(expenses);
-    renderExpenses(expenses);
+    // Make a POST request to crudcrud.com using Axios
+    axios.post('https://crudcrud.com/api/68c1ecefef6744faa9de5117f4caff61/employeedata', expense)
+        .then(response => {
+            // Handle the successful response if needed
+            console.log('Expense added successfully:', response.data);
 
-    // Clear the form
-    document.getElementById('description').value = '';
-    document.getElementById('amount').value = '';
-    // document.getElementById('category').value = ''; // Clear the category input
+            document.getElementById('description').value = '';
+            document.getElementById('amount').value = '';
+        })
+        .catch(error => {
+            console.error('Error adding expense:', error);
+            alert('Failed to add expense. Please try again.');
+        });
 }
+
 
 function loadExpenses() {
     const expenses = getExpenses();
@@ -109,4 +113,3 @@ function getExpenses() {
 function saveExpenses(expenses) {
     localStorage.setItem('expenses', JSON.stringify(expenses));
 }
-
